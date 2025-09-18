@@ -14,8 +14,9 @@ import mlflow
 
 def parse_args():
     '''Parse input arguments'''
+    print("Setting up args for prep...")
 
-    parser = argparse.ArgumentParser("prep")  # Create an ArgumentParser object
+    parser = argparse.ArgumentParser()  # Create an ArgumentParser object
     parser.add_argument("--raw_data", type=str, help="Path to raw data")  # Specify the type for raw data (str)
     parser.add_argument("--train_data", type=str, help="Path to train dataset")  # Specify the type for train data (str)
     parser.add_argument("--test_data", type=str, help="Path to test dataset")  # Specify the type for test data (str)
@@ -26,6 +27,7 @@ def parse_args():
 
 def main(args):  # Write the function name for the main data preparation logic
     '''Read, preprocess, split, and save datasets'''
+    print("Data preprocessing main...")
 
     # Reading Data
     df = pd.read_csv(args.raw_data)

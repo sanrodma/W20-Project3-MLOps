@@ -12,6 +12,7 @@ import json
 
 def parse_args():
     '''Parse input arguments'''
+    print("Setting up args for model register...")
 
     parser = argparse.ArgumentParser()
     parser.add_argument('--model_name', type=str, help='Name under which model will be registered')  # Hint: Specify the type for model_name (str)

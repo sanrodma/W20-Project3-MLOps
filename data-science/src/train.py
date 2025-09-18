@@ -14,6 +14,7 @@ import mlflow.sklearn
 
 def parse_args():
     '''Parse input arguments'''
+    print("Setting up args for model training...")
 
     parser = argparse.ArgumentParser("train")
     parser.add_argument("--train_data", type=str, help="Path to train dataset")  # Specify the type for train_data
@@ -30,6 +31,7 @@ def parse_args():
 
 def main(args):
     '''Read train and test datasets, train model, evaluate model, save trained model'''
+    print("Training model main...")
 
     # Read train and test data from _______
     train_df = pd.read_csv(Path(args.train_data) / "used_cars.csv")
