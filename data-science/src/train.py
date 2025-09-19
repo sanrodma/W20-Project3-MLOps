@@ -34,8 +34,8 @@ def main(args):
     print("Training model main...")
 
     # Read train and test data from _______
-    train_df = pd.read_csv(Path(args.train_data) / "used_cars.csv")
-    test_df = pd.read_csv(Path(args.test_data) / "used_cars.csv")
+    train_df = pd.read_csv(Path(args.train_data)/"used_cars.csv")
+    test_df = pd.read_csv(Path(args.test_data)/"used_cars.csv")
 
     # Split the data into ______(X) and ______(y) 
     y_train = train_df['Segment']  # Specify the target column
@@ -48,7 +48,7 @@ def main(args):
     model.fit(X_train, y_train)  # Train the model
 
     # Log model hyperparameters
-    mlflow.log_param("model", "Decision Tree classifier V1")  # Provide the model name
+    mlflow.log_param("model", "RandomForestRegressor")  # Provide the model name
     mlflow.log_param("n_estimators", args.n_estimators)
     mlflow.log_param("max_depth", args.max_depth)
 
@@ -64,24 +64,20 @@ def main(args):
     mlflow.sklearn.save_model(sk_model=model, path=args.model_output)  # Save the model
 
 if __name__ == "__main__":
-    
-    mlflow.start_run()
+    # Use context manager for MLflow run
+    with mlflow.start_run():
+        # Parse Arguments
+        args = parse_args()
 
-    # Parse Arguments
-    args = parse_args()
+        lines = [
+            f"Train dataset input path: {args.train_data}",
+            f"Test dataset input path: {args.test_data}",
+            f"Model output path: {args.model_output}",
+            f"Number of Estimators: {args.n_estimators}",
+            f"Max Depth: {args.max_depth}"
+        ]
 
-    lines = [
-        f"Train dataset input path: {args.train_data}",
-        f"Test dataset input path: {args.test_data}",
-        f"Model output path: {args.model_output}",
-        f"Number of Estimators: {args.n_estimators}",
-        f"Max Depth: {args.max_depth}"
-    ]
+        for line in lines:
+            print(line)
 
-    for line in lines:
-        print(line)
-
-    main(args)
-
-    mlflow.end_run()
-
+        main(args)
