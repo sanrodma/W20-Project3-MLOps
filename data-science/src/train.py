@@ -16,7 +16,7 @@ def parse_args():
     '''Parse input arguments'''
     print("Setting up args for model training...")
 
-    parser = argparse.ArgumentParser("train")
+    parser = argparse.ArgumentParser()
     parser.add_argument("--train_data", type=str, help="Path to train dataset")  # Specify the type for train_data
     parser.add_argument("--test_data", type=str, help="Path to test dataset")  # Specify the type for test_data
     parser.add_argument("--model_output", type=str, help="Path of output model")  # Specify the type for model_output
