@@ -49,7 +49,6 @@ jobs:
     outputs:
       model_output:
         type: mlflow_model
-    compute: azureml:cpu-cluster
     sampling_algorithm: random  # Specify the sampling algorithm
     trial: ./train.yml  # Refers to a separate command component
     search_space:
