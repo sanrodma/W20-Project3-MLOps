@@ -16,13 +16,13 @@ def parse_args():
     '''Parse input arguments'''
     print("Setting up args for model training...")
 
-    parser = argparse.ArgumentParser()
+    parser = argparse.ArgumentParser("train")
     parser.add_argument("--train_data", type=str, help="Path to train dataset")  # Specify the type for train_data
     parser.add_argument("--test_data", type=str, help="Path to test dataset")  # Specify the type for test_data
     parser.add_argument("--model_output", type=str, help="Path of output model")  # Specify the type for model_output
-    parser.add_argument('--n_estimators', type=int, default=100,
+    parser.add_argument('--n_estimators', type=int, default=50,
                         help='The number of trees in the forest')  # Specify the type and default value for n_estimators
-    parser.add_argument('--max_depth', type=int, default=3,
+    parser.add_argument('--max_depth', type=int, default=5,
                         help='The maximum depth of the tree')  # Specify the type and default value for max_depth
 
     args = parser.parse_args()
@@ -34,8 +34,8 @@ def main(args):
     print("Training model main...")
 
     # Read train and test data from _______
-    train_df = pd.read_csv(Path(args.train_data)/"used_cars.csv")
-    test_df = pd.read_csv(Path(args.test_data)/"used_cars.csv")
+    train_df = pd.read_csv(Path(args.train_data)/"train.csv")
+    test_df = pd.read_csv(Path(args.test_data)/"test.csv")
 
     # Split the data into ______(X) and ______(y) 
     y_train = train_df['Segment']  # Specify the target column
@@ -48,7 +48,7 @@ def main(args):
     model.fit(X_train, y_train)  # Train the model
 
     # Log model hyperparameters
-    mlflow.log_param("model", "RandomForestRegressor")  # Provide the model name
+    mlflow.log_param("model", "DecisionTreeClassifier")  # Provide the model name
     mlflow.log_param("n_estimators", args.n_estimators)
     mlflow.log_param("max_depth", args.max_depth)
 
