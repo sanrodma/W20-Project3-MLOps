@@ -1,6 +1,6 @@
 $schema: https://azuremlschemas.azureedge.net/latest/pipelineJob.schema.json
 type: pipeline
-display_name: decision_tree_segment_predictor_gitHub # Provide the display name for the pipeline
+display_name: random_forest_regressor_gitHub # Provide the display name for the pipeline
 experiment_name: used_cars_classification_training # Provide the experiment name
 description: Pipeline for data preparation, training, prediction, and model registration # Provide the description for the pipeline
 
@@ -57,7 +57,7 @@ jobs:
         values: [10, 20, 30, 50]
       max_depth:
         type: choice # Specify the type for max_depth
-        values: [3, 5, 10, None] # Provide the values for max_depth
+        values: [3, 5, 10, 25] # Provide the values for max_depth
     objective:
       goal: minimize
       primary_metric: MSE

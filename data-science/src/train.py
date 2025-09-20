@@ -48,7 +48,7 @@ def main(args):
     model.fit(X_train, y_train)  # Train the model
 
     # Log model hyperparameters
-    mlflow.log_param("model", "DecisionTreeClassifier")  # Provide the model name
+    mlflow.log_param("model", "RandomForestRegressor")  # Provide the model name
     mlflow.log_param("n_estimators", args.n_estimators)
     mlflow.log_param("max_depth", args.max_depth)
 
