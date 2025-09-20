@@ -64,20 +64,23 @@ def main(args):
     mlflow.sklearn.save_model(sk_model=model, path=args.model_output)  # Save the model
 
 if __name__ == "__main__":
-    # Use context manager for MLflow run
-    with mlflow.start_run():
-        # Parse Arguments
-        args = parse_args()
+    
+    mlflow.start_run()
 
-        lines = [
-            f"Train dataset input path: {args.train_data}",
-            f"Test dataset input path: {args.test_data}",
-            f"Model output path: {args.model_output}",
-            f"Number of Estimators: {args.n_estimators}",
-            f"Max Depth: {args.max_depth}"
-        ]
+    # Parse Arguments
+    args = parse_args()
 
-        for line in lines:
-            print(line)
+    lines = [
+        f"Train dataset input path: {args.train_data}",
+        f"Test dataset input path: {args.test_data}",
+        f"Model output path: {args.model_output}",
+        f"Number of Estimators: {args.n_estimators}",
+        f"Max Depth: {args.max_depth}"
+    ]
 
-        main(args)
+    for line in lines:
+        print(line)
+
+    main(args)
+
+    mlflow.end_run()
