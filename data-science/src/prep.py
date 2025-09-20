@@ -16,7 +16,7 @@ def parse_args():
     '''Parse input arguments'''
     print("Setting up args for prep...")
 
-    parser = argparse.ArgumentParser()  # Create an ArgumentParser object
+    parser = argparse.ArgumentParser("prep")  # Create an ArgumentParser object
     parser.add_argument("--raw_data", type=str, help="Path to raw data")  # Specify the type for raw data (str)
     parser.add_argument("--train_data", type=str, help="Path to train dataset")  # Specify the type for train data (str)
     parser.add_argument("--test_data", type=str, help="Path to test dataset")  # Specify the type for test data (str)
@@ -42,8 +42,8 @@ def main(args):  # Write the function name for the main data preparation logic
     # Save the train and test data
     os.makedirs(args.train_data, exist_ok=True)  # Create directories for train_data and test_data
     os.makedirs(args.test_data, exist_ok=True)  # Create directories for train_data and test_data
-    train_df.to_csv(os.path.join(args.train_data, "used_cars.csv"), index=False)  # Specify the name of the train data file
-    test_df.to_csv(os.path.join(args.test_data, "used_cars.csv"), index=False)  # Specify the name of the test data file
+    train_df.to_csv(os.path.join(args.train_data, "train.csv"), index=False)  # Specify the name of the train data file
+    test_df.to_csv(os.path.join(args.test_data, "test.csv"), index=False)  # Specify the name of the test data file
 
     # log the metrics
     mlflow.log_metric('train size', train_df.shape[0])  # Log the train dataset size
